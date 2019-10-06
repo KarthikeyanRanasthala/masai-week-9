@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { userLogin } from '../redux/carStore';
 import AuthInputField from '../components/AuthInputField';
 
@@ -23,6 +24,7 @@ class Login extends React.Component {
     }
 
     render() {
+        
         let data = [
             {
                 name: 'email',
@@ -44,10 +46,12 @@ class Login extends React.Component {
                         <h2 className='text-center mb-5'>Login</h2>
                         <form className='needs-validation' no-validate='true' onSubmit={(e) => this.handleSubmit(e)}>
                             {data.map((ele, i) => <AuthInputField data={ele} func={this.handleInput} key={i} />)}
-                            <button type='submit' className='btn btn-primary mt-3' style={{width: '100%'}}>Submit</button>
+                            <button type='submit' className='btn btn-primary mt-3' style={{width: '100%', marginBottom: '30px'}}>Submit</button>
+                            <Link to='/signup' style={{marginLeft: '55px'}}>Don't Have An Account?</Link>
                         </form>
                     </div>
                 </div>
+                {this.props.isAuth ? (<Redirect to={{pathname: '/'}} />) : (<></>)}
             </div>
         )
     }
@@ -61,4 +65,10 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = state => {
+    return {
+        isAuth: state.isAuth
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

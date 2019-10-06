@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { userSignUp } from '../redux/carStore';
 
@@ -49,7 +52,6 @@ class SignUp extends React.Component {
                 label: 'Confirm Password'
             }
         ]
-
         return (
             <div className='container'>
                 <div className='row align-items-center'>
@@ -57,14 +59,14 @@ class SignUp extends React.Component {
                         <h2 className='text-center mb-5'>Sign Up</h2>
                         <form className='needs-validation' no-validate='true' onSubmit={(e) => this.handleSubmit(e)}>
                             {data.map((ele, i) => <AuthInputField data={ele} func={this.handleInput} key={i} />)}
-                            <button type='submit' className='btn btn-primary mt-3' style={{width: '100%'}}>Submit</button>
+                            <button type='submit' className='btn btn-primary mt-3' style={{width: '100%', marginBottom: '30px'}}>Submit</button>
+                            <Link to='/login' style={{marginLeft: '55px'}}>Have An Account Already?</Link>
                         </form>
                     </div>
                 </div>
             </div>
         )
     }
-
 }
 
 const mapDispatchToProps = dispatch => {
