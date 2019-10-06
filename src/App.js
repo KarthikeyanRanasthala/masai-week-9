@@ -14,7 +14,6 @@ const App = () => {
         <>
             <NavBar />
             <Route path='/' exact component={Home} />
-            <Route path='/masai-week-9' component={Home} /> // For gh-pages routing
             <Route path='/search' component={Search} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={SignUp} />
